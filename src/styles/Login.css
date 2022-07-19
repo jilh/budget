@@ -23,6 +23,10 @@
     margin: 10px;
 }
 
+.login-form > b{
+    font-size: 1.2em;
+}
+
 .login-button{
     background-color: #d81b60 !important;
     margin-top: 30px !important;
@@ -38,4 +42,10 @@
     border-color: rgba(0,0,0, .12) !important;
     color: #000 !important;
     text-transform: none !important;
+}
+
+@media screen and (max-width: 1024px) {
+    .form-wrapper{
+        width: 90%;
+    }
 }
