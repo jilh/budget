@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Login from "./components/Login";
 import Signup from './components/Signup';
@@ -7,9 +6,6 @@ import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    // <Login />
-    // <Signup />
-    // <Recover />
     <Routes>
       <Route path="/" element={<Login />} />
         <Route path="login" element={ <Login /> } />

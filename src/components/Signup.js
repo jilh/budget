@@ -1,4 +1,4 @@
-import { Button, Paper, TextField, Divider } from "@mui/material";
+import { Button, TextField, Divider } from "@mui/material";
 import { Link } from "react-router-dom";
 import "../styles/Signup.css";
 const Signup = () => {
