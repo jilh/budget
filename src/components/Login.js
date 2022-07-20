@@ -1,4 +1,5 @@
 import { Button, Paper, TextField, Divider } from "@mui/material";
+import { Link } from "react-router-dom";
 import "../styles/Login.css";
 const Login = () => {
     return(
@@ -16,8 +17,8 @@ const Login = () => {
                     <TextField label="Password *" type={"password"} variant="standard" color="error" fullWidth margin="normal" defaultValue={"123"}/>
                     <Button variant="contained" disableElevation color="error" className="login-button" fullWidth>Login</Button>
                     <Divider className="login-divider">OR</Divider>
-                    <Button className="other-button" variant="outlined" disableElevation fullWidth>Signup</Button>
-                    <Button className="other-button" variant="outlined" disableElevation fullWidth>Recover</Button>
+                    <Link to="/signup"><Button className="other-button" variant="outlined" disableElevation fullWidth>Signup</Button></Link>
+                    <Link to="/recover"><Button className="other-button" variant="outlined" disableElevation fullWidth>Recover</Button></Link>
                 </form>
             </div>
         </div>
