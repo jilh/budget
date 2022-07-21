@@ -13,14 +13,13 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="login" element={ <Login /> } />
+        <Route path="/" index element={<App />} />
+          <Route path="login" element={<Login />} />
           <Route path="signup" element={ <Signup /> } />
           <Route path="recover" element={ <Recover /> } />
-          <Route path="app" element={ <App /> }>
-            <Route path="dashboard" element={ <Dashboard /> } />
+          <Route path="app">
+            <Route path="dashboard" element={<Dashboard />} />
           </Route>
-        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

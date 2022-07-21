@@ -1,0 +1,41 @@
+.dashboard-wrapper{
+    display: flex;
+    flex-direction: row;
+}
+.menu{
+    display: flex;
+    flex-direction: column;
+    width: 128px;
+    align-items: center;
+    box-sizing: border-box;
+}
+.menu > button{
+    background: none;
+    border: none;
+    outline: none;
+    padding: 12px;
+    font-size: 16px;
+}
+.menu > button > p{
+    padding: 0;
+    margin-top: -5px;
+}
+.main-section{
+    background-color: #ededed;
+    flex: 1;
+}
+.app-bar{
+    background-color: #d81b60;
+    height: 64px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #fff;
+}
+.app-bar > .logout-button{
+    border: 2px solid #fff;
+    color: #fff;
+}
