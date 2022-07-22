@@ -1,4 +1,151 @@
-.App {
+.dashboard-wrapper{
+  display: flex;
+  flex-direction: row;
+}
+.menu{
+  display: flex;
+  flex-direction: column;
+  width: 128px;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100vh;
+  background-color: #f8f8f8;
+}
+.menu > button{
+  background: none;
+  border: none;
+  outline: none;
+  padding: 12px;
+  font-size: 16px;
+}
+.menu > button > p{
+  padding: 0;
+  margin-top: -5px;
+}
+.main-section{
+  background-color: #ededed;
+  flex: 1;
+  height: 100vh;
+}
+.app-bar{
+  background-color: #d81b60;
+  height: 64px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #fff;
+}
+.app-bar > h4{
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.app-bar > .logout-button{
+  border: 2px solid #fff;
+  color: #fff;
+}
+.main-content{
+  padding: 20px;
+}
+.metrics-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.metrics{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.metrics > .info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.metrics > .info > p{
+  padding: 0;
+  margin: 0;
+}
+.progress-card{
+  margin-top: 20px;
+}
+.progress-bar-details{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.progress-bar-details > .category-info{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: lighter;
+}
+.progress-bar-details > .progress-info{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.progress-info > .progress-metrics{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 1000;
+  width: 60%;
+  font-weight: lighter;
+  top: -2px;
+  left: 2px;
+}
+.progress-info > .progress-metrics > b:first-of-type{
+  color: #fff;
+}
+.progress-bar{
+  height: 20px !important;
+  border-radius: 4px;
+  background-color: #c6c6c6 !important;
+}
+.progress-bar > span{
+  border-radius: 4px;
+  background-color: #d81b60 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +182,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

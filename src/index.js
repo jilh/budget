@@ -7,18 +7,22 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Recover from './components/Recover';
 import Dashboard from './components/Dashboard';
+import Expenses from './components/Expenses';
+import Settings from './components/Settings';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" index element={<App />} />
+        <Route path="/" element={ <App /> } />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={ <Signup /> } />
           <Route path="recover" element={ <Recover /> } />
-          <Route path="app">
+          <Route path="app" element={ <App /> }>
             <Route path="dashboard" element={<Dashboard />} />
+            <Route path="expenses" element={ <Expenses /> } />
+            <Route path="settings" element={ <Settings /> } />
           </Route>
       </Routes>
     </BrowserRouter>
