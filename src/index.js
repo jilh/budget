@@ -20,7 +20,8 @@ root.render(
           <Route path="signup" element={ <Signup /> } />
           <Route path="recover" element={ <Recover /> } />
           <Route path="app" element={ <App /> }>
-            <Route path="dashboard" element={<Dashboard />} />
+            <Route index element={<Dashboard />} />
+            <Route path="dashboard" element={ <Dashboard /> } />
             <Route path="expenses" element={ <Expenses /> } />
             <Route path="settings" element={ <Settings /> } />
           </Route>

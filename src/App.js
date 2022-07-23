@@ -1,15 +1,15 @@
 import { Home, Settings, FormatListBulletedTwoTone, ChevronLeft, ChevronRight } from '@mui/icons-material';
 import { Button } from '@mui/material';
-import { Outlet } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 import './App.css';
 
 const App = () => {
     return(
         <div className="dashboard-wrapper">
             <div className='menu'>
-                <button><Home fontSize='large'/><p>Dashboard</p></button>
-                <button><FormatListBulletedTwoTone fontSize='large' /><p>Expenses</p></button>
-                <button><Settings fontSize='large' /><p>Settings</p></button>
+                <NavLink to="/app/dashboard" className={ ({ isActive }) => isActive ? 'active' : undefined }><Home fontSize='large'/><p>Dashboard</p></NavLink>
+                <NavLink to="/app/expenses"><FormatListBulletedTwoTone fontSize='large' /><p>Expenses</p></NavLink>
+                <NavLink to="/app/settings"><Settings fontSize='large' /><p>Settings</p></NavLink>
             </div>
 
             <div className='main-section'>
