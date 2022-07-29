@@ -9,7 +9,7 @@ const App = () => {
             <div className='menu'>
                 <NavLink to="/app/dashboard" className={ ({ isActive }) => isActive ? 'active' : undefined }><Home fontSize='large'/><p>Dashboard</p></NavLink>
                 <NavLink to="/app/expenses"><FormatListBulletedTwoTone fontSize='large' /><p>Expenses</p></NavLink>
-                <NavLink to="/app/settings"><Settings fontSize='large' /><p>Settings</p></NavLink>
+                <NavLink to="/app/settings/account"><Settings fontSize='large' /><p>Settings</p></NavLink>
             </div>
 
             <div className='main-section'>
