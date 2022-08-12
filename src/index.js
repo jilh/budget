@@ -29,7 +29,7 @@ root.render(
               <Route path="dashboard" element={ <Dashboard /> } />
               <Route path="expenses" element={ <Expenses /> } />
               <Route path="settings" element={ <Settings /> }>
-                <Route path="account" index={true} element={ <Account /> } />
+                <Route path="account" index element={ <Account /> } />
                 <Route path="categories" element={ <Categories /> } />
               </Route>
             </Route>
