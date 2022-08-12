@@ -1,0 +1,13 @@
+.accordion-wrapper{
+    margin-top: 10px;
+}
+.accordion{
+    margin-bottom: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+}
+.card-action-style{
+    justify-content: flex-end;
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
