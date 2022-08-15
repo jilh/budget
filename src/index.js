@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "../src/theme/theme.js";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import Login from './components/Login';
@@ -20,7 +20,7 @@ root.render(
     <ThemeProvider theme={ theme }>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={ <App /> } />
+          <Route path="/" element={ <Navigate to="/app/dashboard" /> } />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={ <Signup /> } />
             <Route path="recover" element={ <Recover /> } />
