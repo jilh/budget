@@ -29,7 +29,8 @@ root.render(
               <Route path="dashboard" element={ <Dashboard /> } />
               <Route path="expenses" element={ <Expenses /> } />
               <Route path="settings" element={ <Settings /> }>
-                <Route path="account" index element={ <Account /> } />
+                <Route index element={ <Navigate to="/app/settings/account" /> } />
+                <Route path="account" element={ <Account /> } />
                 <Route path="categories" element={ <Categories /> } />
               </Route>
             </Route>
