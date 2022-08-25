@@ -14,6 +14,11 @@ import Settings from './components/Settings';
 import Account from './components/Account';
 import Categories from './components/Categories';
 
+if(process.env.NODE_ENV === 'development'){
+  const { worker } = require('./mocks/browser')
+  worker.start();
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
