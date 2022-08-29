@@ -1,9 +1,25 @@
 import { Home, Settings, FormatListBulletedTwoTone, ChevronLeft, ChevronRight } from '@mui/icons-material';
 import { Button } from '@mui/material';
-import { Outlet, NavLink } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import './App.css';
 
 const App = () => {
+    const navigate = useNavigate();
+    const isAuthenticated = sessionStorage.getItem('is-authenticated')
+
+    const logout = () => {
+        sessionStorage.removeItem('is-authenticated')
+        sessionStorage.removeItem('jwt')
+
+        navigate('/login');
+    } 
+    useEffect(() => {
+        if(!isAuthenticated){
+            navigate('/login')
+        }
+    }, [isAuthenticated])
+
     return(
         <div className="dashboard-wrapper">
             <div className='menu'>
@@ -16,7 +32,7 @@ const App = () => {
                 <div className='app-bar'>
                     <b>john@app.com</b>
                     <h4><ChevronLeft />  3/2022  <ChevronRight /></h4>
-                    <Button variant="outlined" className='logout-button'>Logout</Button>
+                    <Button onClick={ () => logout() } variant="outlined" className='logout-button'>Logout</Button>
                 </div>
                 <Outlet />
             </div>

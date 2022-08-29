@@ -1,7 +1,31 @@
+import React, { useState } from 'react';
+import { baseURL } from '../requests'
+import axios from 'axios'
 import { Button, Paper, TextField, Divider } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Login.css";
+
+
 const Login = () => {
+    const [email, setEmail] = useState('john@app.com');
+    const [password, setPassword] = useState('123');
+    const navigate = useNavigate();
+
+    const submitForm = () => {
+        if(email && password){
+            axios.post(baseURL+'login', {
+                email: email,
+                password: password,
+            }).then((response) => {
+                sessionStorage.setItem('is-authenticated', 'true');
+                sessionStorage.setItem('jwt', response.data.jwt);
+                navigate('/app/dashboard')
+            })
+        }else{
+            alert("Unable to process your request")
+        }
+    }
+    
     return(
         <div className="login-wrapper">
             <div className="form-wrapper">
@@ -13,9 +37,9 @@ const Login = () => {
 
                 <form className="login-form" action="#" method="POST">
                     <b>Login to your account</b>
-                    <TextField label="Email *" type={"text"} variant="standard" color="error" fullWidth margin="normal" defaultValue={"john@app.com"}/>
-                    <TextField label="Password *" type={"password"} variant="standard" color="error" fullWidth margin="normal" defaultValue={"123"}/>
-                    <Button variant="contained" disableElevation color="error" className="login-button" fullWidth>Login</Button>
+                    <TextField label="Email *" onChange={ (e) => setEmail(e.target.value) } type={"text"} variant="standard" color="error" fullWidth margin="normal" defaultValue={email}/>
+                    <TextField label="Password *" onChange={ (e) => setPassword(e.target.value) } type={"password"} variant="standard" color="error" fullWidth margin="normal" defaultValue={password}/>
+                    <Button variant="contained" onClick={ () => submitForm() } disabled={ !email || !password } disableElevation color="primary" className={"login-button"} fullWidth>Login</Button>
                     <Divider className="login-divider">OR</Divider>
                     <Link to="/signup"><Button className="other-button" variant="outlined" disableElevation fullWidth>Signup</Button></Link>
                     <Link to="/recover"><Button className="other-button" variant="outlined" disableElevation fullWidth>Recover</Button></Link>
