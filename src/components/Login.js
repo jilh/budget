@@ -13,12 +13,18 @@ const Login = () => {
 
     const submitForm = () => {
         if(email && password){
-            axios.post(baseURL+'login', {
-                email: email,
-                password: password,
+            axios({
+                method: 'POST',
+                url: baseURL+'login', 
+                headers: {
+                    'Content-Type' : 'application/json',
+                },
+                body: { email: email, password: password }
+                
             }).then((response) => {
                 sessionStorage.setItem('is-authenticated', 'true');
                 sessionStorage.setItem('jwt', response.data.jwt);
+                sessionStorage.setItem('accessType', response.data.accessType)
                 navigate('/app/dashboard')
             })
         }else{

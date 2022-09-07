@@ -7,7 +7,7 @@ import './App.css';
 const App = () => {
     const navigate = useNavigate();
     const isAuthenticated = sessionStorage.getItem('is-authenticated')
-
+    console.log(isAuthenticated);
     const logout = () => {
         sessionStorage.removeItem('is-authenticated')
         sessionStorage.removeItem('jwt')
@@ -15,10 +15,10 @@ const App = () => {
         navigate('/login');
     } 
     useEffect(() => {
-        if(!isAuthenticated){
+        if(!isAuthenticated || isAuthenticated === "false"){
             navigate('/login')
         }
-    }, [isAuthenticated])
+    }, [isAuthenticated, navigate])
 
     return(
         <div className="dashboard-wrapper">

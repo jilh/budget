@@ -4,12 +4,15 @@ export const handlers = [
     //Handles a POST /login request
     rest.post('/login', (req, res, ctx) => {
         // sessionStorage.setItem('is-authenticated', 'true')
-
+        // const { email } = req.params
+        // console.log(req);
+        // const accessType = email == "john@app.com" ? "Owner" : "Reader"
         return res(
             // Respond with a 200 status code
             ctx.status(200),
             ctx.json({
                 jwt: 'xdhdodfhabdfnbdkskndfikndfdndfddhf',
+                // accessType: accessType
             })
         )
     }),
