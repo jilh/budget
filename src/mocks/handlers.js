@@ -1,4 +1,5 @@
 import { rest } from 'msw';
+import ExpenseData from './expensesdata';
 
 export const handlers = [
     //Handles a POST /login request

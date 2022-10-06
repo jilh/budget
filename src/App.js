@@ -7,7 +7,7 @@ import './App.css';
 const App = () => {
     const navigate = useNavigate();
     const isAuthenticated = sessionStorage.getItem('is-authenticated')
-    console.log(isAuthenticated);
+    // console.log(isAuthenticated);
     const logout = () => {
         sessionStorage.removeItem('is-authenticated')
         sessionStorage.removeItem('jwt')
