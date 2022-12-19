@@ -1,9 +1,9 @@
 class ExpenseData{
 
-    constructor(count = 20){
+    constructor(count = 10){
         const container = [];
 
-        for( let i = 0; i <= count; ++i){
+        for( let i = 1; i <= count; ++i){
             container.push({
                 date: this.getDate(),
                 counterparty: this.getCounterparty(),
@@ -17,7 +17,8 @@ class ExpenseData{
 
     getDate(){
         // Return random dates
-        return new Date(new Date() - Math.random() * (1e+12));
+        const date = new Date(new Date() - Math.random() * (1e+12));
+        return date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear()
     }
 
     getCounterparty(){

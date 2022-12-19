@@ -41,4 +41,27 @@ export const handlers = [
             }),
         )
     }),
+
+    // Request handlers for Expenses
+
+    rest.get('/expenses', (req, res, ctx) => {
+        const isAuthenticated = sessionStorage.getItem('is-authenticated')
+
+        if(!isAuthenticated){
+            return res(
+                ctx.status(403),
+                ctx.json({
+                    errorMessage: 'Not authorized',
+                }),
+            )
+        }
+
+        const expenses = new ExpenseData()
+        return res(
+            ctx.status(200),
+            ctx.json({
+                expenses: expenses,
+            })
+        )
+    })
 ]

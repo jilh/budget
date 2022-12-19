@@ -1,13 +1,16 @@
 import { Button, Dialog, DialogActions, DialogContent,DialogTitle, InputAdornment, MenuItem, SpeedDial, Table, TableBody, TableCell, TableHead, TableRow, TextField } from "@mui/material";
 import { Edit, Close, Add } from "@mui/icons-material";
 import "../styles/Expenses.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment"
+import axios from "axios";
+import { baseURL } from "../requests";
 
 const Expenses = () => {
     const [ openDialog, setOpenDialog ] = useState(false);
     const [date, setDate] = useState(new Date());
+    const [expenses, setExpenses] = useState([]);
 
     const handleClickDialogOpen = () => {
         setOpenDialog(true);
@@ -20,6 +23,15 @@ const Expenses = () => {
     const handleDialogSave = () => {
         setOpenDialog(false);
     };
+
+    useEffect(() =>{
+        axios({
+            method: 'GET',
+            url: baseURL + 'expenses'
+        }).then((response) => {
+            setExpenses(response.data.expenses);
+        })
+    }, [])
 
     return(
         <div className="expenses-wrapper">
@@ -37,13 +49,26 @@ const Expenses = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    <TableRow>
+                    {
+                        expenses.map((expense, index) => {
+                            return (
+                                <TableRow key={index}>
+                                    <TableCell align="left">{ expense.date }</TableCell>
+                                    <TableCell align="left">{ expense.counterparty }</TableCell>
+                                    <TableCell align="left">{ expense.category }</TableCell>
+                                    <TableCell align="right">${ expense.value }</TableCell>
+                                    <TableCell align="right"> <Edit className="action-buttons"/>&nbsp;&nbsp;<Close className="action-buttons"/> </TableCell>
+                                </TableRow>
+                            )
+                        })
+                    }
+                    {/* <TableRow>
                         <TableCell align="left">03/03/22</TableCell>
                         <TableCell align="left">Gas station</TableCell>
                         <TableCell align="left">Transport</TableCell>
                         <TableCell align="right">$181.42</TableCell>
                         <TableCell align="right"> <Edit className="action-buttons"/>&nbsp;&nbsp;<Close className="action-buttons"/> </TableCell>
-                    </TableRow>
+                    </TableRow> */}
                 </TableBody>
             </Table>
 
