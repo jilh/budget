@@ -7,6 +7,7 @@ import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment"
 import axios from "axios";
 import { baseURL } from "../requests";
 import EditExpenseDialog from "./EditExpenseDialog";
+import moment from "moment";
 
 const Expenses = () => {
 
@@ -24,7 +25,27 @@ const Expenses = () => {
 
 
     const [ openDialog, setOpenDialog ] = useState(false);
+
+    // Add Expense Dialog Inputs
     const [date, setDate] = useState(new Date());
+    const [counterParty, setCounterParty] = useState('');
+    const [expenseCategoryInput, setExpenseCategoryInput] = useState('')
+    const [amountInput, setAmountInput] = useState('')
+
+    // Add Expense Input Functions
+
+    const handleCounterParty = (event) => {
+        setCounterParty(event.target.value)
+    }
+
+    const handleExpenseCategoryInput = (event) => {
+        setExpenseCategoryInput(event.target.value)
+    }
+
+    const handleAmountInput = (event) => {
+        setAmountInput(event.target.value)
+    }
+
     const [expenses, setExpenses] = useState([]);
     const [expensesCategory, setExpensesCategory] = useState([])
     const [searchResult, setSearchResult] = useState([]);
@@ -38,6 +59,21 @@ const Expenses = () => {
     };
 
     const handleDialogSave = () => {
+        const newExpenses = {
+            date: moment(date).format('MM/DD/YYYY'),
+            counterparty: expenseCategoryInput,
+            category: counterParty,
+            value: amountInput,
+        }
+
+        setExpenses([...expenses, newExpenses])
+
+        // Clear input fields
+        setDate('')
+        setCounterParty('')
+        setAmountInput('')
+        setExpenseCategoryInput('')
+
         setOpenDialog(false);
     };
 
@@ -105,13 +141,6 @@ const Expenses = () => {
                         
                     }
                     <EditExpenseDialog isOpen={editDialogOpen} handleClose={handleEditDialogClose} payload={currentPayload} expensesCategory={expensesCategory}/>
-                    {/* <TableRow>
-                        <TableCell align="left">03/03/22</TableCell>
-                        <TableCell align="left">Gas station</TableCell>
-                        <TableCell align="left">Transport</TableCell>
-                        <TableCell align="right">$181.42</TableCell>
-                        <TableCell align="right"> <Edit className="action-buttons"/>&nbsp;&nbsp;<Close className="action-buttons"/> </TableCell>
-                    </TableRow> */}
                 </TableBody>
             </Table>
             </div>
@@ -125,19 +154,20 @@ const Expenses = () => {
                         <DatePicker
                             views={['day']}
                             label="Date of expense"
+                            inputFormat="MM/DD/YYYY"
                             value={date}
                             onChange={(newValue) => {
                                 setDate(newValue);
                             }}
-                            renderInput={(params) => <TextField {...params} helperText={null} variant="standard" color="error" margin="dense" fullWidth />}
+                            renderInput={(params) => <TextField {...params} helperText={null} variant="standard" color="error" margin="dense" fullWidth required />}
                         />
                     </LocalizationProvider>
 
-                    <TextField type={"text"} label="Couterparty" variant="standard" color="error" margin={"dense"} fullWidth />
+                    <TextField type={"text"} label="Couterparty" variant="standard" onChange={ (event) => handleCounterParty(event) } color="error" margin={"dense"} fullWidth required />
 
                         <FormControl variant="standard" margin={"dense"} color="error" fullWidth>
                             <InputLabel>Expense Category</InputLabel>
-                            <Select defaultValue={''}>
+                            <Select defaultValue={''} onChange={ (event) => handleExpenseCategoryInput(event) } required>
                                 {
                                     expensesCategory.map((category, index) => {
                                         return(
@@ -146,28 +176,12 @@ const Expenses = () => {
                                     })
                                 }
                             </Select>
-                        </FormControl>
-                        {/* <Select
-                        defaultValue={""}
-                        fullWidth
-                        variant="standard">
-                        {
-                            expensesCategory.map((category, index) => {
-                                return(
-                                    <MenuItem key={index} value={category}>{category}</MenuItem>
-                                )
-                            })
-                        }
-                        </Select> */}
-                        {/* <MenuItem key="1" value="James">James</MenuItem>
-                        <MenuItem key="2" value="Rohn">Rohn</MenuItem>
-                        <MenuItem key="3" value="Key">Key</MenuItem> */}
-                    
-                    <TextField type={"text"} label="Amount Spent" variant="standard" color="error" margin={"dense"} fullWidth  InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }}/>
+                        </FormControl>                    
+                    <TextField type={"text"} label="Amount Spent" variant="standard" onChange={ (event) => handleAmountInput(event) } color="error" margin={"dense"} fullWidth required InputProps={{ startAdornment: <InputAdornment position="start">$</InputAdornment> }}/>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={ handleDialogSave }>Save</Button>
                     <Button onClick={ handleDialogClose }>Cancel</Button>
+                    <Button onClick={ handleDialogSave } disabled={ !date || !counterParty || !expenseCategoryInput || !amountInput } >Save</Button>
                 </DialogActions>
             </Dialog>
         </div>
