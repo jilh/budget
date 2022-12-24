@@ -3,7 +3,7 @@ import ExpenseData from './expensesdata';
 
 export const handlers = [
     //Handles a POST /login request
-    rest.post('/login', (req, res, ctx) => {
+    rest.post('/api/login', (req, res, ctx) => {
         // sessionStorage.setItem('is-authenticated', 'true')
         // const { email } = req.params
         // console.log(req);
@@ -19,7 +19,7 @@ export const handlers = [
     }),
 
     // Handles a GET /user request
-    rest.get('/user', (req, res, ctx) => {
+    rest.get('/api/user', (req, res, ctx) => {
         // Check if the user is authenticated in this session
         const isAuthenticated = sessionStorage.getItem('is-authenticated')
         
@@ -44,7 +44,7 @@ export const handlers = [
 
     // Request handlers for Expenses
 
-    rest.get('/expenses', (req, res, ctx) => {
+    rest.get('/api/expenses', (req, res, ctx) => {
         const isAuthenticated = sessionStorage.getItem('is-authenticated')
 
         if(!isAuthenticated){
@@ -61,6 +61,29 @@ export const handlers = [
             ctx.status(200),
             ctx.json({
                 expenses: expenses,
+            })
+        )
+    }),
+
+    rest.get('/api/expenses/categories', (req, res, ctx) => {
+        const isAuthenticated = sessionStorage.getItem('is-authenticated')
+
+        if(!isAuthenticated){
+            return res(
+                ctx.status(403),
+                ctx.json({
+                    errorMessage: 'Not authorized',
+                }),
+            )
+        }
+
+        // const expenses = new ExpenseData()
+        // const allCategories = expenses.getAllCategories()
+
+        return res(
+            ctx.status(200),
+            ctx.json({
+                categories: ["Transportation", "Communication", "Rents", "Running Cost"],
             })
         )
     })

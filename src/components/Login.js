@@ -15,7 +15,7 @@ const Login = () => {
         if(email && password){
             axios({
                 method: 'POST',
-                url: baseURL+'login', 
+                url: baseURL+'api/login', 
                 headers: {
                     'Content-Type' : 'application/json',
                 },
