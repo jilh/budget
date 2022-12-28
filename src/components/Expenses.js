@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogActions, DialogContent,DialogTitle, FormControl, InputAdornment, InputLabel, MenuItem, Select, SpeedDial, Table, TableBody, TableCell, TableHead, TableRow, TextField } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent,DialogContentText,DialogTitle, FormControl, InputAdornment, InputLabel, MenuItem, Select, SpeedDial, Table, TableBody, TableCell, TableHead, TableRow, TextField } from "@mui/material";
 import { Edit, Close, Add } from "@mui/icons-material";
 import "../styles/Expenses.css";
 import { useEffect, useState } from "react";
@@ -61,8 +61,8 @@ const Expenses = () => {
     const handleDialogSave = () => {
         const newExpenses = {
             date: moment(date).format('MM/DD/YYYY'),
-            counterparty: expenseCategoryInput,
-            category: counterParty,
+            counterparty: counterParty,
+            category: expenseCategoryInput,
             value: amountInput,
         }
 
@@ -107,6 +107,24 @@ const Expenses = () => {
 
     }, [])
 
+    const [deletePromptOpen, setDeletePromptOpen] = useState(false)
+    const [currentDeleteIndex, setCurrentDeleteIndex] = useState('')
+    
+    const deletePromptClose = () => {
+        setDeletePromptOpen(false)
+    }
+
+    const deletePromptConfirmed = () => {
+        console.log("Confirmed delete" + currentDeleteIndex)
+        setExpenses((current) => current.filter((_, index) => index !== currentDeleteIndex))
+        setDeletePromptOpen(false)
+    }
+
+    const handleDeletePromptClick = (index) => {
+        setCurrentDeleteIndex(index)
+        setDeletePromptOpen(true)
+    }
+
     
     return(
         <div className="expenses-wrapper">
@@ -133,7 +151,7 @@ const Expenses = () => {
                                     <TableCell align="left">{ expense.counterparty }</TableCell>
                                     <TableCell align="left">{ expense.category }</TableCell>
                                     <TableCell align="right">${ expense.value }</TableCell>
-                                    <TableCell align="right"> <Edit className="action-buttons" onClick={() => handleEditDialogOpen(expense) }/>&nbsp;&nbsp;<Close className="action-buttons"/> </TableCell>
+                                    <TableCell align="right"> <Edit className="action-buttons" onClick={() => handleEditDialogOpen(expense) }/>&nbsp;&nbsp;<Close className="action-buttons" onClick={ () => handleDeletePromptClick(index) } /> </TableCell>
                                     
                                 </TableRow>
                             )
@@ -145,6 +163,8 @@ const Expenses = () => {
             </Table>
             </div>
             <SpeedDial ariaLabel="Add expense speed dial" sx={{ position: 'absolute', bottom: 20, right: 20 }} icon={ <Add /> } className="speed-dial" onClick={ handleClickDialogOpen }></SpeedDial>
+            
+            
             <Dialog open={ openDialog } onClose={ handleDialogClose }>
                 <DialogTitle>Add new expenses</DialogTitle>
                 <DialogContent>
@@ -184,6 +204,30 @@ const Expenses = () => {
                     <Button onClick={ handleDialogSave } disabled={ !date || !counterParty || !expenseCategoryInput || !amountInput } >Save</Button>
                 </DialogActions>
             </Dialog>
+
+
+            <Dialog
+                open={deletePromptOpen}
+                onClose={deletePromptClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                {"Delete Expense?"}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        Are you sure you want to delete this expense?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={deletePromptClose}>No</Button>
+                    <Button onClick={deletePromptConfirmed} autoFocus>
+                        Yes
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
         </div>
     )
 }

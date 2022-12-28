@@ -60,7 +60,7 @@ const EditExpenseDialog = ({ isOpen, handleClose, payload, expensesCategory }) =
                     <TextField type={"text"} label="Couterparty" variant="standard" color="error" margin={"dense"} value={payload.counterparty} fullWidth />
                     <FormControl variant="standard" margin={"dense"} color="error" fullWidth>
                         <InputLabel>Expense Category</InputLabel>
-                        <Select defaultValue={''}>
+                        <Select defaultValue={payload.category}>
                             {
                                 expensesCategory.map((category, index) => {
                                     return(
