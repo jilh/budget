@@ -191,7 +191,7 @@ const Expenses = () => {
                                 {
                                     expensesCategory.map((category, index) => {
                                         return(
-                                            <MenuItem key={index} value={category}>{category}</MenuItem>
+                                            <MenuItem key={index} value={category.name}>{category.name}</MenuItem>
                                         )
                                     })
                                 }

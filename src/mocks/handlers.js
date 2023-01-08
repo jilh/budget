@@ -83,7 +83,12 @@ export const handlers = [
         return res(
             ctx.status(200),
             ctx.json({
-                categories: ["Transportation", "Communication", "Rents", "Running Cost"],
+                categories: [
+                    { name: "Transportation", patterns: ['john', 'drey', 'bush']},
+                    { name: "Communication", patterns: ['wing', 'fly', 'drive']},
+                    { name: 'Rents', patterns: ['joy', 'hope', 'peace']},
+                    { name: "Running Cost", patterns: ['climb', 'run', 'fly']},
+                ]
             })
         )
     })

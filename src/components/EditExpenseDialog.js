@@ -11,13 +11,14 @@ const EditExpenseDialog = ({ isOpen, handleClose, payload, expensesCategory }) =
 
     const test = moment(payload.date, "MM/DD/YYYY").toDate().toString()
     const [date, setDate] = useState(new Date());
+    const [defaultDate, setDefaultDate] = useState('');
     
     console.log(date)
     console.log(test)
     console.log(payload.date)
     
     useEffect(() =>{
-        setDate(test)
+        setDefaultDate(test)
         console.log(test)
     }, [])
 
@@ -50,6 +51,7 @@ const EditExpenseDialog = ({ isOpen, handleClose, payload, expensesCategory }) =
                             label="Date of expense"
                             inputFormat="MM/DD/YYYY"
                             value={date}
+                            defaultValue={payload.date}
                             onChange={(newValue) => {
                                 setDate(newValue);
                             }}
@@ -64,7 +66,7 @@ const EditExpenseDialog = ({ isOpen, handleClose, payload, expensesCategory }) =
                             {
                                 expensesCategory.map((category, index) => {
                                     return(
-                                        <MenuItem key={index} value={category}>{category}</MenuItem>
+                                        <MenuItem key={index} value={category.name}>{category.name}</MenuItem>
                                     )
                                 })
                             }
