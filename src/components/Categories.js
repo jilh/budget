@@ -1,5 +1,5 @@
 import { Accordion, AccordionDetails, AccordionSummary, Button, Card, CardActions, CardContent, TextField, Typography } from "@mui/material";
-import { ConnectingAirportsOutlined, ExpandMore } from "@mui/icons-material";
+import { ExpandMore } from "@mui/icons-material";
 import "../styles/Categories.css";
 import { useEffect, useState } from "react";
 import axios from "axios";

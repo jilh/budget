@@ -20,7 +20,7 @@ const EditExpenseDialog = ({ isOpen, handleClose, payload, expensesCategory }) =
     useEffect(() =>{
         setDefaultDate(test)
         console.log(test)
-    }, [])
+    }, [test])
 
 
 
@@ -51,7 +51,7 @@ const EditExpenseDialog = ({ isOpen, handleClose, payload, expensesCategory }) =
                             label="Date of expense"
                             inputFormat="MM/DD/YYYY"
                             value={date}
-                            defaultValue={payload.date}
+                            defaultValue={defaultDate}
                             onChange={(newValue) => {
                                 setDate(newValue);
                             }}
